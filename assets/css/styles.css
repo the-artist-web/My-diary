@@ -1,0 +1,309 @@
+/*------------------------------------*\
+  #ROOT
+\*------------------------------------*/
+
+:root {
+  /**
+   * COLOR
+   */
+  --background: rgb(255, 255, 255);
+  --main: rgb(0, 200, 255);
+  --black: black;
+  --white: white;
+
+  /**
+   * font family
+   */
+   --font-family: "Noto Kufi Arabic", sans-serif;
+}
+
+/*------------------------------------*\
+  #RESET
+\*------------------------------------*/
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+li { list-style: none; }
+
+span,
+input,
+button,
+textarea { display: block; }
+
+input,
+button,
+textarea {
+  background: none;
+  border: none;
+}
+
+input,
+textarea {
+  font: inherit;
+  outline: none;
+  width: 100%;
+}
+
+button { cursor: pointer; }
+
+html {
+  scroll-behavior: smooth;
+  font-size: 1.1rem;
+}
+
+body {
+  font-family: var(--font-family);
+  background: var(--background);
+  color: var(--black);
+}
+
+::selection {
+  background-color: var(--main);
+  color: var(--white);
+}
+
+::-webkit-scrollbar {
+  background-color: var(--background);
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--black);
+  border-radius: 4px;
+}
+
+/*------------------------------------*\
+  #DUBLICATE ITEM
+\*------------------------------------*/
+
+.container { padding-inline: 16px; }
+
+.section {
+  padding-top: 50px;
+  padding-bottom: 100px;
+}
+
+/*------------------------------------*\
+  #COMPONANT
+\*------------------------------------*/
+
+/**
+ * button
+ */
+ .btn-add {
+   background-color: var(--main);
+   border: 2px solid transparent;
+  color: var(--white);
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  transition: .4s;
+  border-radius: 10px;
+}
+
+.btn-add:hover {
+  background-color: transparent;
+  border: 2px solid var(--main);
+  color: var(--black);
+  transition: .4s;
+}
+
+/*------------------------------------*\
+  #MY DIARY
+\*------------------------------------*/
+
+.load {
+  transform: translate(-50%, -50%);
+  height: 100vh;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  font-size: 2rem;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+}
+
+.load.active { display: none; }
+
+.my-diary .container .btn-add-bottom {
+  width: 65px;
+  height: 65px;
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  background-color: var(--main);
+  border: 2px solid transparent;
+  display: grid;
+  place-items: center;
+  font-size: 1.5rem;
+  border-radius: 12px;
+  z-index: 10;
+  color: var(--white);
+  transition: .4s;
+}
+
+.my-diary .container .btn-add-bottom:where(:hover, :focus) {
+  border: 2px solid var(--main);
+  background-color: transparent;
+  transform: rotate(360deg);
+  color: var(--black);
+  transition: .4s;
+}
+
+.my-diary .container .aside-add-bottom .show-form:hover {
+  background-color: var(--black);
+  color: var(--white);
+}
+
+.my-diary .container .my-diary-form {
+  transform: translate(-50%, -50%);
+  background-color: var(--white);
+  position: fixed;
+  top: -5%;
+  left: 50%;
+  padding: 20px;
+  border-radius: 10px;
+  width: 350px;
+  display: grid;
+  gap: 20px;
+  z-index: 12;
+  visibility: hidden;
+  opacity: 0;
+  transition: .4s;
+}
+
+.my-diary .container .my-diary-form.active {
+  top: 50%;
+  visibility: visible;
+  transition: .4s;
+  opacity: 1;
+}
+
+.my-diary .container .my-diary-form .input-day {
+  border: 2px solid var(--main);
+  color: var(--black);
+  padding: 15px 20px;
+  border-radius: 5px;
+}
+
+.my-diary .container .my-diary-form .textarea-Theme {
+  border: 2px solid var(--main);
+  color: var(--black);
+  padding: 15px 20px;
+  border-radius: 5px;
+  resize: none;
+  width: 100%;
+  height: 200px;
+}
+
+.overflow {
+  background-color: rgb(0, 0, 0);
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 11;
+  visibility: hidden;
+  opacity: 0;
+  transition: .4s;
+}
+
+.overflow.active {
+  visibility: visible;
+  transition: .4s;
+  opacity: 0.7;
+}
+
+.my-diary .container .my-diary-push-list {
+  grid-template-columns: repeat(1, 1fr);
+  display: grid;
+  gap: 20px;
+}
+
+.my-diary .container .my-diary-push-list .my-diary-push-box {
+  background-color: var(--black);
+  border-radius: 10px;
+  color: var(--white);
+  position: relative;
+  transition: .4s;
+  padding: 20px;
+  z-index: 9;
+}
+
+.my-diary .container .my-diary-push-list .my-diary-push-box:hover .delet {
+  display: block;
+  transition: .4s;
+}
+
+.my-diary .container .my-diary-push-list .my-diary-push-box .my-diary-push-title {
+  border-bottom: 2px solid rgb(148, 148, 148);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.my-diary .container .my-diary-push-list .my-diary-push-box .my-diary-push-Theme {
+  text-align: justify;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ddd;
+  line-height: 2;
+}
+
+.delet {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 1.2rem;
+  color: red;
+  display: none;
+}
+
+/*------------------------------------*\
+  #MEDIA
+\*------------------------------------*/
+
+/**
+ * responsive for larger than 768px secreen
+ */
+@media (min-width: 768px) {
+  .my-diary .container .btn-add-bottom {
+    bottom: 20px;
+    right: 20px;
+  }
+
+  .my-diary .container .my-diary-push-list { grid-template-columns: repeat(2, 1fr); }
+
+  .my-diary .container .my-diary-form { width: 400px; }
+}
+
+/**
+ * responsive for larger than 992px secreen
+ */
+@media (min-width: 992px) {
+  .my-diary .container .btn-add-bottom {
+    bottom: 30px;
+    right: 30px;
+  }
+
+  .my-diary .container .my-diary-push-list { grid-template-columns: repeat(3, 1fr); }
+
+  .my-diary .container .my-diary-form { width: 450px; }
+}
+
+/**
+ * responsive for larger than 1440px secreen
+ */
+@media (min-width: 1440px) {
+  .my-diary .container .my-diary-push-list { grid-template-columns: repeat(4, 1fr); }
+}
