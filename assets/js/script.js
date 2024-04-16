@@ -18,7 +18,11 @@ if (localStorage.product != null) {
     array = JSON.parse(localStorage.product);
 } else {
     array = [];
-}
+};
+
+if (localStorage.length !== 0) {
+    load.classList.add(localStorage.load);
+};
 
 btnAdd.addEventListener("click", () => {
     myDiaryForm.classList.remove("active");
@@ -32,11 +36,13 @@ btnAdd.addEventListener("click", () => {
         array.push(nuwPro);
         localStorage.setItem("product", JSON.stringify(array));
         load.classList.add("active");
+        localStorage.setItem("load", "active");
     
         deletValue();
         showData();
     } else {
         load.classList.remove("active");
+        localStorage.setItem("load", null);
     };
 });
 
