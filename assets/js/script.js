@@ -13,6 +13,11 @@ btnShowForm.addEventListener("click", () => {
     overflow.classList.add("active");
 });
 
+overflow.addEventListener("click", () => {
+    overflow.classList.remove("active");
+    myDiaryForm.classList.remove("active");
+});
+
 let array;
 if (localStorage.product != null) {
     array = JSON.parse(localStorage.product);
@@ -66,9 +71,18 @@ function showData() {
             <p class="my-diary-push-Theme">${array[i].textareaTheme}</p>
         </li>
         `;
+    }
 
-        document.querySelector("[data-my-diary-push-list]").innerHTML = myDiaryPushList;
-    };
+    document.querySelector("[data-my-diary-push-list]").innerHTML = myDiaryPushList;
+
+    // التحقق من قائمة اليوميات
+    if (array.length === 0) {
+        load.classList.remove("active");
+        localStorage.setItem("load", null);
+    } else {
+        load.classList.add("active");
+        localStorage.setItem("load", "active");
+    }
 };
 showData();
 
