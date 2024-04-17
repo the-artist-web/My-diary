@@ -84,10 +84,7 @@ body {
 
 .container { padding-inline: 16px; }
 
-.section {
-  padding-top: 50px;
-  padding-bottom: 100px;
-}
+.section {padding: 50px 0 100px; }
 
 /*------------------------------------*\
   #COMPONANT
@@ -96,9 +93,9 @@ body {
 /**
  * button
  */
- .btn-add {
-   background-color: var(--main);
-   border: 2px solid transparent;
+.btn-add {
+  background-color: var(--main);
+  border: 2px solid transparent;
   color: var(--white);
   padding: 15px 30px;
   font-size: 1.2rem;
@@ -205,6 +202,8 @@ body {
   text-align: justify;
 }
 
+.my-diary .container .my-diary-form .textarea-Theme::-webkit-scrollbar { display: none; }
+
 .overflow {
   background-color: rgb(0, 0, 0);
   width: 100%;
@@ -247,6 +246,11 @@ body {
   transition: .4s;
 }
 
+.my-diary .container .my-diary-push-list .my-diary-push-box:hover .update {
+  display: block;
+  transition: .4s;
+}
+
 .my-diary .container .my-diary-push-list .my-diary-push-box .my-diary-push-title {
   border-bottom: 2px solid rgb(148, 148, 148);
   padding-bottom: 10px;
@@ -270,6 +274,50 @@ body {
   display: none;
 }
 
+.update {
+  position: absolute;
+  top: 20px;
+  left: 58px;
+  font-size: 1.2rem;
+  color: var(--white);
+  display: none;
+}
+
+.deletAll {
+  width: max-content;
+  height: 65px;
+  position: fixed;
+  bottom: 25px;
+  right: 100px;
+  background-color: rgb(255, 37, 99);
+  border: 2px solid transparent;
+  display: grid;
+  place-items: center;
+  font-size: 1.5rem;
+  border-radius: 12px;
+  z-index: 10;
+  color: var(--white);
+  padding: 0 30px;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: .4s;
+}
+
+.deletAll.active { 
+  bottom: 16px;
+  visibility: visible;
+  transition: .4s;
+  opacity: 1;
+}
+
+.deletAll:where(:hover, :focus) {
+  border: 2px solid rgb(255, 37, 99);
+  background-color: transparent;
+  color: var(--black);
+  transition: .4s;
+}
+
 /*------------------------------------*\
   #MEDIA
 \*------------------------------------*/
@@ -286,6 +334,12 @@ body {
   .my-diary .container .my-diary-push-list { grid-template-columns: repeat(2, 1fr); }
 
   .my-diary .container .my-diary-form { width: 400px; }
+
+  .deletAll {
+    bottom: 40px;
+    right: 100px;
+  }
+  .deletAll.active { bottom: 20px; }
 }
 
 /**
@@ -300,6 +354,12 @@ body {
   .my-diary .container .my-diary-push-list { grid-template-columns: repeat(3, 1fr); }
 
   .my-diary .container .my-diary-form { width: 450px; }
+
+  .deletAll {
+    bottom: 50px;
+    right: 120px;
+  }
+  .deletAll.active { bottom: 30px; }
 }
 
 /**

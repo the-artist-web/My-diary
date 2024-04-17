@@ -8,6 +8,9 @@ titleName = document.querySelector("[data-title-name]"),
 load = document.querySelector("[data-load]"),
 theme = document.querySelector("[data-Theme]");
 
+let mood = "اضافه";
+let tmp;
+
 btnShowForm.addEventListener("click", () => {
     myDiaryForm.classList.add("active");
     overflow.classList.add("active");
@@ -38,17 +41,19 @@ btnAdd.addEventListener("click", () => {
             inputDay: inputDay.value.toLowerCase(),
             textareaTheme: textareaTheme.value.toLowerCase(),
         };
-        array.push(nuwPro);
+
+        if (mood === "اضافه") {
+            array.push(nuwPro);
+        } else {
+            array[tmp] = nuwPro;
+            mood = "اضافه";
+            btnAdd.innerHTML = `اضافه`;
+        };
         localStorage.setItem("product", JSON.stringify(array));
-        load.classList.add("active");
-        localStorage.setItem("load", "active");
     
         deletValue();
         showData();
-    } else {
-        load.classList.remove("active");
-        localStorage.setItem("load", null);
-    };
+    } else {};
 });
 
 function deletValue() {
@@ -64,6 +69,9 @@ function showData() {
             <button onclick="deletIndex(${i})" class="delet">
                 <i class="fa-solid fa-trash"></i>
             </button>
+            <button onclick="updateData(${i})" class="update">
+                <i class="fa-regular fa-pen-to-square"></i>
+            </button>
             <div class="my-diary-push-title">
                 <h2 class="my-diary-push-title-name">${array[i].inputDay}</h2>
             </div>
@@ -74,15 +82,20 @@ function showData() {
     }
 
     document.querySelector("[data-my-diary-push-list]").innerHTML = myDiaryPushList;
+    let deletAll = document.querySelector("[data-delet-all]");
 
     // التحقق من قائمة اليوميات
     if (array.length === 0) {
         load.classList.remove("active");
         localStorage.setItem("load", null);
+        // delet all
+        deletAll.classList.remove("active");
     } else {
         load.classList.add("active");
         localStorage.setItem("load", "active");
-    }
+        // delet all
+        deletAll.classList.add("active");
+    };
 };
 showData();
 
@@ -91,4 +104,26 @@ function deletIndex(i) {
     localStorage.setItem("product", JSON.stringify(array));
 
     showData();
+};
+
+// delet all
+function deletAll() {
+    array.splice(0);
+    localStorage.clear();
+    
+    showData();
+};
+
+// update
+function updateData(i) {
+    inputDay.value = array[i].inputDay;
+    textareaTheme.value = array[i].textareaTheme;
+
+    myDiaryForm.classList.add("active");
+    overflow.classList.add("active");
+
+    btnAdd.innerHTML = `تعديل`;
+    mood = "تعديل";
+
+    tmp = i;
 };
